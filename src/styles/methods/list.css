@@ -1,0 +1,6 @@
+.list table {
+    padding: 20px;
+}
+.list tbody{
+    border: 1px solid black;
+}

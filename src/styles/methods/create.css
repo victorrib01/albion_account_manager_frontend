@@ -1,0 +1,23 @@
+.create form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create fieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.create .active {
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.create .buttons {
+    justify-content: center;
+}
