@@ -2,6 +2,8 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import api from '../../services/api';
 
+import '../../styles/methods/create.css'
+
 import { Form, Button } from 'semantic-ui-react';
 
 interface CharsInterface {
@@ -32,9 +34,9 @@ export default function CreateIsland() {
         try {
             const data = {
                 level,
-                dailyEarnings,
+                daily_earnings: dailyEarnings,
                 char,
-                active: active.toString()
+                active
             }
 
             await api.post('islands', data);

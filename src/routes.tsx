@@ -3,17 +3,21 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 
-// Categories Routes
+// Islands Routes
 import CreateIslands from './pages/islands/Create'
 import ListCategories from './pages/islands/List'
 
-// Boxes Routes
+// Chars Routes
 import CreateChars from './pages/chars/Create'
 import ListChars from './pages/chars/List'
 
-// Box Buttons routes
+// Accounts routes
 import CreateAccounts from './pages/accounts/Create'
 import ListAccounts from './pages/accounts/List'
+
+// Buildings routes
+import CreateBuildings from './pages/buildings/Create'
+import ListBuildings from './pages/buildings/List'
 
 function Routes() {
     return (
@@ -29,6 +33,9 @@ function Routes() {
 
                 <Route path="/accounts/create" component={CreateAccounts} />
                 <Route path="/accounts/list" component={ListAccounts} />
+
+                <Route path="/buildings/create" component={CreateBuildings} />
+                <Route path="/buildings/list" component={ListBuildings} />
 
             </Switch>
         </BrowserRouter>

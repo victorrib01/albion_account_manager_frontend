@@ -9,7 +9,7 @@ interface CharsInterface {
     nickname: string;
     silver: number;
     premium: boolean;
-    firstPremium: boolean;
+    first_premium: boolean;
     account: {
         id: number;
         email: string;
@@ -25,11 +25,12 @@ export default function List() {
     async function loadChars() {
         const response = await api.get('chars');
         setChars(response.data)
+        console.log(response.data)
     }
 
-    async function handleDeleteBox(id: number) {
+    async function handleDelete(id: number) {
         try {
-            await api.delete(`boxes/${id}`)
+            await api.delete(`chars/${id}`)
 
             setChars(chars.filter(chars => chars.id !== id));
             alert('Deletado com sucesso!')
@@ -38,22 +39,12 @@ export default function List() {
         }
     }
 
-    async function handleEditBox(event: FormEvent) {
+    async function handleEdit(event: FormEvent) {
         try {
             event.preventDefault();
 
             console.log(id)
 
-            // const data = new FormData();
-
-            // data.append('name', name);
-            // data.append('description', description);
-            // data.append('price', String(price));
-            // data.append('stock', String(stock));
-            // data.append('category_id', category)
-            // data.append('active', String(active))
-
-            // await api.put(`boxes/${id}`, data)
             alert('Edição realizada com sucesso!')
         } catch (err) {
             alert('Erro ao editar a caixa, tente nomavente')
@@ -89,7 +80,7 @@ export default function List() {
                                     <Table.Cell>{char.nickname}</Table.Cell>
                                     <Table.Cell>{char.silver}</Table.Cell>
                                     <Table.Cell>{char.premium === true ? 'Ativo' : 'Desativo'}</Table.Cell>
-                                    <Table.Cell>{char.firstPremium === true ? 'Ativo' : 'Desativo'}</Table.Cell>
+                                    <Table.Cell>{char.first_premium === true ? 'Ativo' : 'Desativo'}</Table.Cell>
                                     <Table.Cell>{char.account.email}</Table.Cell>
                                     <Table.Cell>
                                         <button type="button" onClick={(e) => setShowEdit(char.id)}>
@@ -97,7 +88,7 @@ export default function List() {
                                         </button>
                                         <Modal onClose={(e: any) => setShowEdit(-1)} active={showEdit} id={char.id}>
                                             <h1>Editando {char.nickname.toUpperCase()}</h1>
-                                            <form onSubmit={handleEditBox}>
+                                            <form onSubmit={handleEdit}>
                                                 <fieldset>
                                                     <input type="hidden" value={char.id} onChange={e => setId(parseInt(e.target.value))}/>
                                                     <label>Nickname:</label>
@@ -107,7 +98,7 @@ export default function List() {
                                                     <label>Premium:</label>
                                                     <input type="checkbox" checked={char.premium} />
                                                     <label>First Premium:</label>
-                                                    <input type="checkbox" checked={char.firstPremium} />
+                                                    <input type="checkbox" checked={char.first_premium} />
                                                     <label>Account:</label>
                                                     {/* <select>
                                                         {categories.map(c => {
@@ -129,7 +120,7 @@ export default function List() {
                                         <Modal onClose={(e: any) => setShowDelete(-1)} active={showDelete} id={char.id}>
                                             <h1>Tem certeza que deseja deletar {char.nickname.toUpperCase()}?</h1>
 
-                                            <button onClick={() => handleDeleteBox(char.id)}>Sim</button>
+                                            <button onClick={() => handleDelete(char.id)}>Sim</button>
                                             <button>Não</button>
                                         </Modal>
                                     </Table.Cell>

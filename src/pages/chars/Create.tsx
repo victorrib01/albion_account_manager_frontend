@@ -13,22 +13,22 @@ interface AccountsInterface {
 export default function Create() {
 
     const [nickname, setNickname] = useState('');
-    const [account, setAccount] = useState('');
     const [silver, setSilver] = useState(0);
     const [premium, setPremium] = useState(false);
     const [firstPremium, setFirstPremium] = useState(false);
-
+    
+    const [account, setAccount] = useState('');
     const [accounts, setAccounts] = useState<AccountsInterface[]>([])
-
+    
     async function loadAccounts() {
         const response = await api.get('accounts');
         setAccounts(response.data)
     }
-
+    
     useEffect(() => {
         loadAccounts()
     }, [])
-
+    
     async function handleSubmit(event: FormEvent) {
         event.preventDefault();
 
@@ -37,7 +37,7 @@ export default function Create() {
                 nickname, 
                 silver, 
                 premium,
-                firstPremium,
+                first_premium: firstPremium,
                 account_id: account,
             }
 
@@ -74,13 +74,14 @@ export default function Create() {
                                 })}
                             </select>
                         </Form.Field>
+                        
                         <Form.Field>
-                            <label htmlFor="active">Premium:</label>
+                            <label htmlFor="premium">Premium:</label>
                             <Button type="button" className={premium ? 'active' : ''} onClick={() => setPremium(true)} >Sim</Button>
                             <Button type="button" className={!premium ? 'active' : ''} onClick={() => setPremium(false)} >Não</Button>
                         </Form.Field>
                         <Form.Field>
-                            <label htmlFor="active">First Premium:</label>
+                            <label htmlFor="firstPremium">First Premium:</label>
                             <Button type="button" className={firstPremium ? 'active' : ''} onClick={() => setFirstPremium(true)} >Sim</Button>
                             <Button type="button" className={!firstPremium ? 'active' : ''} onClick={() => setFirstPremium(false)} >Não</Button>
                         </Form.Field>

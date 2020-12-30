@@ -1,16 +1,16 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Header from '../../components/Header';
 import api from '../../services/api';
 
 import { Form, Button } from 'semantic-ui-react';
 
-interface AccountInterface {
-    id: number;
-    email: string;
-    password: string;
-}
+// interface AccountInterface {
+//     id: number;
+//     email: string;
+//     password: string;
+// }
 
-export default function CreateBoxButton() {
+export default function CreateAccount() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

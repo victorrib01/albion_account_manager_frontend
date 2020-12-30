@@ -18,7 +18,13 @@ function Header() {
             id: 3,
             text: 'Islands',
             route: 'islands'
-        }
+        },
+        {
+            id: 4,
+            text: 'Buildings',
+            route: 'buildings'
+        },
+        
     ]
     return (
         <div className="header">
@@ -34,12 +40,12 @@ function Header() {
                             <Dropdown.Menu>
                                 <Dropdown.Item text={`${menuItem.text}`}>
                                     <Link to={`/${menuItem.route}/create`}>
-                                        <h1>Criar</h1>
+                                        <h3>Create</h3>
                                     </Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item>
                                     <Link to={`/${menuItem.route}/list`}>
-                                        <h1>Listar</h1>
+                                        <h3>List</h3>
                                     </Link>
                                 </Dropdown.Item>
                                 {/* <Dropdown.Item>

@@ -11,6 +11,7 @@ function Home() {
     const [accounts, setAccounts] = useState([])
     const [chars, setChars] = useState([])
     const [islands, setIslands] = useState([])
+    const [constructions, setConstructions] = useState([])
 
     async function loadCounters() {
         const accountsResponse = await api.get('accounts');
@@ -21,6 +22,9 @@ function Home() {
 
         const islandsResponse = await api.get('islands');
         setIslands(islandsResponse.data)
+
+        const constructionsResponse = await api.get('constructions');
+        setConstructions(constructionsResponse.data)
     }
 
     useEffect(() => {
@@ -42,7 +46,7 @@ function Home() {
                             <Card.Content extra>
                                 <div className='ui two buttons'>
                                     <Button basic color='green'>
-                                        <Link to='accounts/create'>Create</Link>
+                                        <Link to='accounts/create'>Add</Link>
                                     </Button>
                                     <Button basic color='grey'>
                                         <Link to='accounts/list'>List</Link>
@@ -58,7 +62,7 @@ function Home() {
                             <Card.Content extra>
                                 <div className='ui two buttons'>
                                     <Button basic color='green'>
-                                        <Link to='chars/create'>Create</Link>
+                                        <Link to='chars/create'>Add</Link>
                                     </Button>
                                     <Button basic color='grey'>
                                         <Link to='chars/list'>List</Link>
@@ -74,7 +78,7 @@ function Home() {
                             <Card.Content extra>
                                 <div className='ui two buttons'>
                                     <Button basic color='green'>
-                                        <Link to='islands/create'>Create</Link>
+                                        <Link to='islands/create'>Add</Link>
                                     </Button>
                                     <Button basic color='grey'>
                                         <Link to='islands/list'>List</Link>
@@ -82,8 +86,23 @@ function Home() {
                                 </div>
                             </Card.Content>
                         </Card>
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>Constructions</Card.Header>
+                                <Card.Description>{constructions.length}</Card.Description>
+                            </Card.Content>
+                            <Card.Content extra>
+                                <div className='ui two buttons'>
+                                    <Button basic color='green'>
+                                        <Link to='constructions/create'>Add</Link>
+                                    </Button>
+                                    <Button basic color='grey'>
+                                        <Link to='constructions/list'>List</Link>
+                                    </Button>
+                                </div>
+                            </Card.Content>
+                        </Card>
                     </Card.Group>
-
                 </div>
             </div>
         </>

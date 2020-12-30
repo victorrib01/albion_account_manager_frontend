@@ -10,7 +10,7 @@ interface IslandsInterface {
     char: {
         nickname: string
     }
-    dailyEarnings: number;
+    daily_earnings: number;
     active: boolean;
 }
 
@@ -25,7 +25,7 @@ export default function List() {
         console.log(response.data)
     }
 
-    async function handleDeleteBox(id: number) {
+    async function handleDelete(id: number) {
         try {
             await api.delete(`islands/${id}`)
 
@@ -84,7 +84,7 @@ export default function List() {
                                 <Table.Row key={c.id}>
                                     <Table.Cell>{c.id}</Table.Cell>
                                     <Table.Cell>{c.level}</Table.Cell>
-                                    <Table.Cell>{c.dailyEarnings}</Table.Cell>
+                                    <Table.Cell>{c.daily_earnings}</Table.Cell>
                                     <Table.Cell>{c.char.nickname}</Table.Cell>
                                     <Table.Cell>{c.active === true ? 'Ativo' : 'Desativo'}</Table.Cell>
                                     <Table.Cell>
@@ -112,7 +112,7 @@ export default function List() {
                                         </button>
                                         <Modal onClose={(e: any) => setShowDelete(-1)} active={showDelete} id={c.id}>
                                             <h1>Tem certeza que deseja deletar {c.id}?</h1>
-                                            <button onClick={() => handleDeleteBox(c.id)}>Sim</button>
+                                            <button onClick={() => handleDelete(c.id)}>Sim</button>
                                             <button>Não</button>
                                         </Modal>
                                     </Table.Cell>
