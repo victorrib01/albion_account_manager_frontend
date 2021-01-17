@@ -16,8 +16,20 @@ import CreateAccounts from './pages/accounts/Create'
 import ListAccounts from './pages/accounts/List'
 
 // Buildings routes
-import CreateBuildings from './pages/buildings/Create'
-import ListBuildings from './pages/buildings/List'
+import CreateConstructions from './pages/constructions/Create'
+import ListConstructions from './pages/constructions/List'
+
+// Daily Earnings routes
+import CreateDailyEarnings from './pages/daily_earnings/Create'
+import ListDailyEarnings from './pages/daily_earnings/List'
+
+// Daily Costs routes
+import CreateDailyCosts from './pages/daily_costs/Create'
+import ListDailyCosts from './pages/daily_costs/List'
+
+// Products routes
+import CreateProducts from './pages/products/Create'
+import ListProducts from './pages/products/List'
 
 function Routes() {
     return (
@@ -25,17 +37,26 @@ function Routes() {
             <Switch>
                 <Route path="/" exact component={Home} />
 
-                <Route path="/islands/create" component={CreateIslands} />
-                <Route path="/islands/list" component={ListCategories} />
+                <Route path="/accounts/create" component={CreateAccounts} />
+                <Route path="/accounts/list" component={ListAccounts} />
 
                 <Route path="/chars/create" component={CreateChars} />
                 <Route path="/chars/list" component={ListChars} />
 
-                <Route path="/accounts/create" component={CreateAccounts} />
-                <Route path="/accounts/list" component={ListAccounts} />
+                <Route path="/islands/create" component={CreateIslands} />
+                <Route path="/islands/list" component={ListCategories} />
 
-                <Route path="/buildings/create" component={CreateBuildings} />
-                <Route path="/buildings/list" component={ListBuildings} />
+                <Route path="/constructions/create" component={CreateConstructions} />
+                <Route path="/constructions/list" component={ListConstructions} />
+                
+                <Route path="/daily_earnings/create" component={CreateDailyEarnings} />
+                <Route path="/daily_earnings/list" component={ListDailyEarnings} />
+                
+                <Route path="/daily_costs/create" component={CreateDailyCosts} />
+                <Route path="/daily_costs/list" component={ListDailyCosts} />
+                
+                <Route path="/products/create" component={CreateProducts} />
+                <Route path="/products/list" component={ListProducts} />
 
             </Switch>
         </BrowserRouter>

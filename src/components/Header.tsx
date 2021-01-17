@@ -18,12 +18,29 @@ function Header() {
             id: 3,
             text: 'Islands',
             route: 'islands'
+            
         },
         {
             id: 4,
-            text: 'Buildings',
-            route: 'buildings'
+            text: 'Constructions',
+            route: 'constructions'
+            
         },
+        // {
+        //     id: 5,
+        //     text: 'Daily Earnings',
+        //     route: 'daily_earnings'
+        // },
+        // {
+        //     id: 6,
+        //     text: 'Daily Costs',
+        //     route: 'daily_costs'
+        // },
+        // {
+        //     id: 7,
+        //     text: 'Products',
+        //     route: 'products'
+        // },
         
     ]
     return (

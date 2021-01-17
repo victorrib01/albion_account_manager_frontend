@@ -4,18 +4,10 @@ import Modal from '../../components/Modal';
 import api from '../../services/api'
 import { Table } from 'semantic-ui-react';
 
-interface IslandsInterface {
-    id: number;
-    level: number;
-    char: {
-        nickname: string
-    }
-    daily_earnings: number;
-    active: boolean;
-}
+import {IslandInterface} from '../../common/types'
 
 export default function List() {
-    const [islands, setIslands] = useState<IslandsInterface[]>([])
+    const [islands, setIslands] = useState<IslandInterface[]>([])
     const [showDelete, setShowDelete] = useState(-1)
     //const [showEdit, setShowEdit] = useState(-1)
 
@@ -71,10 +63,11 @@ export default function List() {
                         <Table.Row>
                             <Table.HeaderCell>ID:</Table.HeaderCell>
                             <Table.HeaderCell>Level:</Table.HeaderCell>
-                            <Table.HeaderCell>Daily Earnings:</Table.HeaderCell>
                             <Table.HeaderCell>Char:</Table.HeaderCell>
+                            <Table.HeaderCell>Type:</Table.HeaderCell>
+                            <Table.HeaderCell>Location:</Table.HeaderCell>
                             <Table.HeaderCell>Ativo:</Table.HeaderCell>
-                            <Table.HeaderCell>Editar:</Table.HeaderCell>
+                            {/* <Table.HeaderCell>Editar:</Table.HeaderCell> */}
                             <Table.HeaderCell>Deletar:</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
@@ -84,15 +77,15 @@ export default function List() {
                                 <Table.Row key={c.id}>
                                     <Table.Cell>{c.id}</Table.Cell>
                                     <Table.Cell>{c.level}</Table.Cell>
-                                    <Table.Cell>{c.daily_earnings}</Table.Cell>
                                     <Table.Cell>{c.char.nickname}</Table.Cell>
+                                    <Table.Cell>{c.type.name}</Table.Cell>
+                                    <Table.Cell>{c.location.name}</Table.Cell>
                                     <Table.Cell>{c.active === true ? 'Ativo' : 'Desativo'}</Table.Cell>
-                                    <Table.Cell>
-                                        {/* onClick={(e) => setShowEdit(c.id)} */}
-                                        <button type="button" >
+                                    {/* <Table.Cell>
+                                        <button type="button" onClick={(e) => setShowEdit(c.id)}>
                                             Editar
                                         </button>
-                                        {/* <Modal onClose={(e: any) => setShowEdit(-1)} active={showEdit} id={c.id}>
+                                        <Modal onClose={(e: any) => setShowEdit(-1)} active={showEdit} id={c.id}>
                                             <h1>Editando a caixa {c.name.toUpperCase()}</h1>
                                             <form >
                                                 <input type="hidden" value={c.id} onChange={e => setId(parseInt(e.target.value))} />
@@ -104,8 +97,8 @@ export default function List() {
                                                 <button type="submit">Confirmar</button>
                                                 <button onClick={(e: any) => setShowEdit(-1)}>Cancelar</button>
                                             </form>
-                                        </Modal> */}
-                                    </Table.Cell>
+                                        </Modal>
+                                    </Table.Cell> */}
                                     <Table.Cell>
                                         <button type="button" onClick={(e) => setShowDelete(c.id)}>
                                             Deletar

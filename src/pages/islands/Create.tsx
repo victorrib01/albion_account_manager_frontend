@@ -6,26 +6,32 @@ import '../../styles/methods/create.css'
 
 import { Form, Button } from 'semantic-ui-react';
 
-interface CharsInterface {
-    id: number;
-    nickname: string;
-}
+import {CharInterface, LocationInterface, IslandTypeInterface} from '../../common/types'
 
 export default function CreateIsland() {
     const [level, setLevel] = useState(0);
-    const [dailyEarnings, setDailyEarnings] = useState(0);
     const [active, setActive] = useState(false);
+    const [type, setType] = useState('')
+    const [location, setLocation] = useState('')
     const [char, setChar] = useState('');
 
-    const [chars, setChars] = useState<CharsInterface[]>([]);
+    const [types, setTypes] = useState<IslandTypeInterface[]>([])
+    const [locations, setLocations] = useState<LocationInterface[]>([])
+    const [chars, setChars] = useState<CharInterface[]>([]);
 
-    async function loadChars() {
-        const response = await api.get('chars');
-        setChars(response.data)
+    async function loadRelations() {
+        const charsResponse = await api.get('chars');
+        setChars(charsResponse.data)
+
+        const typesResponse = await api.get('island_types');
+        setTypes(typesResponse.data)
+
+        const locationResponse = await api.get('locations');
+        setLocations(locationResponse.data)
     }
 
     useEffect(() => {
-        loadChars()
+        loadRelations()
     }, [])
 
     async function handleSubmit(event: FormEvent) {
@@ -34,9 +40,10 @@ export default function CreateIsland() {
         try {
             const data = {
                 level,
-                daily_earnings: dailyEarnings,
+                active,
+                type,
+                location,
                 char,
-                active
             }
 
             await api.post('islands', data);
@@ -57,16 +64,34 @@ export default function CreateIsland() {
                             <input inputMode="decimal" id="level" value={level} onChange={e => setLevel(parseInt(e.target.value))} />
                         </Form.Field>
                         <Form.Field>
-                            <label htmlFor="dailyEarnings">Daily Earnings:</label>
-                            <input inputMode="decimal" id="dailyEarnings" value={dailyEarnings} onChange={e => setDailyEarnings(parseInt(e.target.value))} />
-                        </Form.Field>
-                        <Form.Field>
                             <label>Char:</label>
                             <select onChange={e => setChar(e.target.value)} >
                                 <option>Selecione um char</option>
                                 {chars.map(({ id, nickname }) => {
                                     return (
                                         <option value={id} key={id}>{nickname}</option>
+                                    )
+                                })}
+                            </select>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Type:</label>
+                            <select onChange={e => setType(e.target.value)} >
+                                <option>Select one type</option>
+                                {types.map(({ id, name }) => {
+                                    return (
+                                        <option value={id} key={id}>{name}</option>
+                                    )
+                                })}
+                            </select>
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Location:</label>
+                            <select onChange={e => setLocation(e.target.value)} >
+                                <option>Select one Location</option>
+                                {locations.map(({ id, name }) => {
+                                    return (
+                                        <option value={id} key={id}>{name}</option>
                                     )
                                 })}
                             </select>

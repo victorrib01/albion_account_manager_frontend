@@ -7,6 +7,7 @@ import '../styles/home.css'
 
 import { Button, Card } from 'semantic-ui-react'
 
+
 function Home() {
     const [accounts, setAccounts] = useState([])
     const [chars, setChars] = useState([])
@@ -25,6 +26,10 @@ function Home() {
 
         const constructionsResponse = await api.get('constructions');
         setConstructions(constructionsResponse.data)
+
+        // const lastEarnResponse = await api.get('daily_earnings/lastearn');
+        // const [{value}] = lastEarnResponse.data
+        // setLastEarn(value);
     }
 
     useEffect(() => {
@@ -101,6 +106,38 @@ function Home() {
                                     </Button>
                                 </div>
                             </Card.Content>
+                        </Card>
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>Daily Earnings</Card.Header>
+                                <Card.Description>Work in progress..</Card.Description>
+                            </Card.Content>
+                            {/* <Card.Content extra>
+                                <div className='ui two buttons'>
+                                    <Button basic color='green'>
+                                        <Link to='constructions/create'>Add</Link>
+                                    </Button>
+                                    <Button basic color='grey'>
+                                        <Link to='constructions/list'>List</Link>
+                                    </Button>
+                                </div>
+                            </Card.Content> */}
+                        </Card>
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>Daily Costs</Card.Header>
+                                <Card.Description>Work in progress...</Card.Description>
+                            </Card.Content>
+                            {/* <Card.Content extra>
+                                <div className='ui two buttons'>
+                                    <Button basic color='green'>
+                                        <Link to='constructions/create'></Link>
+                                    </Button>
+                                    <Button basic color='grey'>
+                                        <Link to='constructions/list'>List</Link>
+                                    </Button>
+                                </div>
+                            </Card.Content> */}
                         </Card>
                     </Card.Group>
                 </div>
